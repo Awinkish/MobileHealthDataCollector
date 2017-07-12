@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="basic_info">Basic Information</string>
+    <string name="return_reason">Return Reason</string>
+    <string name="multiple_children">Multiple Children</string>
+
+    <string name="county">County</string>
+    <string-array name="countys">
+        <item>Nairobi</item>
+    </string-array>
+
+    <string-array name="single_select_value">
+        <item>SELECT</item>
+    </string-array>
+
+    <string name="sub_county">Sub County</string>
+    <string-array name="sub_countys">
+        <item>Select Sub County</item>
+        <item>Makadara</item>
+        <item>Ruaraka</item>
+    </string-array>
+
+    <string name="mdivision">Division</string>
+    <string name="location">Location</string>
+    <string name="sub_location">Sub Location</string>
+
+    <string-array name="empty_array">
+        <item>None</item>
+    </string-array>
+
+    <string name="date">Date</string>
+    <string name="village_name">Community Unit</string>
+    <string name="village">Community Unit</string>
+    <string name="household_num">Household Number</string>
+    <string name="name_of_hsehold_member">Name of household member</string>
+
+    <string-array name="items">
+        <item>Our first Item</item>
+        <item>Our second Item</item>
+        <item>Our third Item</item>
+    </string-array>
+
+    <string-array name="yes_no_na">
+        <item>Select option</item>
+        <item>Yes (✔)</item>
+        <item>No  (<b>X</b>)</item>
+        <item>N/A</item>
+    </string-array>
+
+    <string-array name="yes_no">
+        <item>Select option</item>
+        <item>Yes (✔)</item>
+        <item>No  (<b>X</b>)</item>
+    </string-array>
+
+    <string name="gender">Gender</string>
+    <string name="gender_desc">Gender of child</string>
+    <string-array name="gender">
+        <item>Select option</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+</resources>
