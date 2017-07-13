@@ -10,22 +10,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.khalif.a514app.Databases.MotherDetailsDb;
-import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.MotherModel;
+import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
 import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import java.util.StringTokenizer;
-import java.util.UUID;
-
 public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpandListener {
 
     ExpandablePanel panelSectionFive, panelSectionSix;
 
-    String rand;
     MotherModel clientModel;
     private MaterialEditText mobile, name, age;
     I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel> complete_listener;
@@ -41,8 +37,6 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
 
         clientModel = new MotherModel();
 
-        rand = UUID.randomUUID().toString();
-
         mobile = (MaterialEditText) rootView.findViewById(R.id.txtNumber);
         name = (MaterialEditText) rootView.findViewById(R.id.txtName);
         age = (MaterialEditText) rootView.findViewById(R.id.txtAgeId);
@@ -57,7 +51,6 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
 
             clientModel = clientDb.getData();
             Toast.makeText(getActivity(), clientModel.toString(), Toast.LENGTH_SHORT).show();
-            clientModel = clientDb.getData();
             name.setText(clientModel.getClient_name());
             mobile.setText(clientModel.getClient_phone());
             age.setText(clientModel.getClient_age());
@@ -93,7 +86,7 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
         header.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_more_white_18dp, 0);
     }
 
-    public void doTask(String rand){
+    public void doTask(String rand) {
 
         clientModel.setClient_name(name.getText().toString());
         clientModel.setClient_mobile(mobile.getText().toString());

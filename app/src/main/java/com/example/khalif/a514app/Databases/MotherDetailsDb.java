@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.khalif.a514app.Constants.Constant;
 import com.example.khalif.a514app.Models.MotherModel;
@@ -87,6 +89,8 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
             dsrDataModel = gson.fromJson(leads_data, MotherModel.class);
         }
         cursor.close();
+
+        Log.d("doString", dsrDataModel.toString());
         // db.close();
         // return user
         return dsrDataModel;

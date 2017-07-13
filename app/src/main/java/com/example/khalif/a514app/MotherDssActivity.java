@@ -1,5 +1,6 @@
 package com.example.khalif.a514app;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,9 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
     int i = 0;
     private String status;
     private String rand;
-    private MotherModel motherModel;
+
+    public static final String UID = "uid";
+    public static final String RAND_ID = "rand";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +38,15 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
         setContentView(R.layout.activity_main);
 
         // Create a random key for draft storage and access
-        motherModel = new MotherModel();
         rand = UUID.randomUUID().toString();
-        motherModel.setRand(rand);
+
+        SharedPreferences sharedPreferences = getSharedPreferences(UID, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(RAND_ID);
+        editor.apply();
+
+        editor.putString(RAND_ID, rand);
+        editor.apply();
 
         // Add the mother details Fragment
         Fragment frag = new MotherDssDetails();
@@ -46,50 +55,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_next = (Button) findViewById(R.id.btn_next);
-
-        btn_next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                switch (i) {
-                    case 0:
-                        // Get values from
-                        MotherDssDetails fragment = (MotherDssDetails) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
-                        fragment.doTask(rand);
-                        break;
-                    case 1:
-                        if (status.equals("1")) {
-                            PregnantDss fragment2 = (PregnantDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
-                            fragment2.setClientDetails(rand);
-                        } else {
-                            PostpartumDss fragment1 = (PostpartumDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
-                            fragment1.setClientDetails(rand);
-                        }
-
-                        break;
-                }
-                i++;
-                change_fragment(i);
-
-            }
-        });
-
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (i == 0) {
-                    Toast.makeText(getApplicationContext(), "Cannot go back", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if (i == 2) {
-                    btn_next.setText("Next");
-                }
-                i = i - 1;
-                change_fragment(i);
-
-            }
-        });
     }
 
     public void change_fragment(int id) {
@@ -100,7 +65,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                 fragchange = new MotherDssDetails();
                 break;
             case 1:
-                if(status.equals("1")){
+                if (status.equals("1")) {
                     fragchange = new PregnantDss();
                 } else {
                     fragchange = new PostpartumDss();
@@ -119,9 +84,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
 
     @Override
     public void onData(MotherModel clientModel) {
-        Toast.makeText(getApplicationContext(), rand, Toast.LENGTH_SHORT).show();
         status = clientModel.getClient_status();
-        //client.setDsr(clientModel);
         MotherDetailsDb db = MotherDetailsDb.getInstance(getApplicationContext());
         db.getWritableDatabase();
         db.resetTables();
@@ -145,4 +108,41 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
         db.save(pregantQModel);
     }
 
+    public void next(View view) {
+
+        Toast.makeText(getApplicationContext(), rand, Toast.LENGTH_SHORT).show();
+        switch (i) {
+            case 0:
+                // Get values from
+                MotherDssDetails fragment = (MotherDssDetails) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
+                fragment.doTask(rand);
+
+                break;
+            case 1:
+                if (status.equals("1")) {
+                    PregnantDss fragment2 = (PregnantDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
+                    fragment2.setClientDetails(rand);
+                } else {
+                    PostpartumDss fragment1 = (PostpartumDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
+                    fragment1.setClientDetails();
+                }
+
+                break;
+        }
+        i++;
+        change_fragment(i);
+    }
+
+    public void back(View view) {
+
+        if (i == 0) {
+            Toast.makeText(getApplicationContext(), "Cannot go back", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (i == 2) {
+            btn_next.setText("Next");
+        }
+        i = i - 1;
+        change_fragment(i);
+    }
 }

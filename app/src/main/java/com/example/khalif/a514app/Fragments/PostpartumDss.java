@@ -4,6 +4,7 @@ package com.example.khalif.a514app.Fragments;
  * Created by ArwinKish on 7/11/2017.
  */
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.khalif.a514app.Databases.PostpartumDssDb;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
+import com.example.khalif.a514app.MotherDssActivity;
 import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
@@ -73,6 +76,8 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
             clientDetails = dssDb.getData();
 
+            Toast.makeText(getActivity(), clientDetails.toString(), Toast.LENGTH_SHORT).show();
+
             a_dX.setSelection((int) clientDetails.get_a_dX());
             b_aX.setSelection((int) clientDetails.get_b_aX());
             f_cX.setSelection((int) clientDetails.get_f_cX());
@@ -126,7 +131,11 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
         header.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.ic_expand_more_white_18dp,0);
     }
 
-    public void setClientDetails(String rand){
+    public void setClientDetails(){
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MotherDssActivity.
+                UID, Context.MODE_PRIVATE);
+        String rand = sharedPreferences.getString(MotherDssActivity.RAND_ID, null);
 
         clientDetails.set_a_dX(a_dX.getSelectedItemId());
         clientDetails.set_b_aX(b_aX.getSelectedItemId());

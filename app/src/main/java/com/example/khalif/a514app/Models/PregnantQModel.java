@@ -7,6 +7,7 @@ public class PregnantQModel {
 
     private long _b_nS, _b_hS, _b_vS,_s_hS, _v_S, _f_S, _d_sS, _c_cS,_a_sS, _b_bS, _u_rS, _u_nS,
             _p_sP, _g_uS, _n_mS, _t_bS, _f_bS, _p_aS, _p_fA, _c_S, _e_wS;
+    private String rand;
 
     public void set_b_nS(long _b_nS) {
         this._b_nS = _b_nS;
@@ -177,30 +178,36 @@ public class PregnantQModel {
         return _p_fA;
     }
 
-//    @Override
-//    public String toString() {
-//        return "QuestionsModel{" +
-//                "_a_dX='" + _a_dX + '\'' +
-//                ", _b_aX='" + _b_aX + '\'' +
-//                ", _f_cX=" + _f_cX + '\'' +
-//                ", _f_nX=" + _f_nX + '\'' +
-//                ", _l_pX=" + _l_pX + '\'' +
-//                ", _l_cX='" + _l_cX + '\'' +
-//                ", _h_bX='" + _h_bX + '\'' +
-//                ", _h_dX='" + _h_dX + '\'' +
-//                ", _b_vX='" + _b_vX + '\'' +
-//                ", _d_bX='" + _d_bX + '\'' +
-//                ", _p_uX='" + _p_uX + '\'' +
-//                ", _p_fX='" + _p_fX + '\'' +
-//                ", _w_bX='" + _w_bX + '\'' +
-//                ", _p_sX='" + _p_sX + '\'' +
-//                ", _a_lX='" + _a_lX + '\'' +
-//                ", _f_sX='" + _f_sX + '\'' +
-//                ", _f_sP='" + _f_sP + '\'' +
-//                ", _m_sP='" + _m_sP + '\'' +
-//                ", _a_sV='" + _a_sV + '\'' +
-//                ", _a_sV='" + _a_sV + '\'' +
-//                ", _a_sV='" + _a_sV + '\'' +
-//                '}';
-//    }
+    public void setRand(String rand) {
+        this.rand = rand;
+    }
+
+    @Override
+    public String toString() {
+        return "QuestionsModel{" +
+                "client_rand='" + rand + '\'' +
+                "_a_dX='" + _b_nS + '\'' +
+                ", _b_aX='" + _b_hS + '\'' +
+                ", _b_vS=" + _b_vS + '\'' +
+                ", _e_wS=" + _e_wS + '\'' +
+                ", _s_hS=" + _s_hS + '\'' +
+                ", _v_S='" + _v_S + '\'' +
+                ", _c_S='" + _c_S + '\'' +
+                ", _f_S='" + _f_S + '\'' +
+                ", _d_sS='" + _d_sS + '\'' +
+                ", _c_cS='" + _c_cS + '\'' +
+                ", _a_sS='" + _a_sS + '\'' +
+                ", _b_bS='" + _b_bS + '\'' +
+                ", _u_rS='" + _u_rS + '\'' +
+                ", _u_nS='" + _u_nS + '\'' +
+                ", _p_sP='" + _p_sP + '\'' +
+                ", _g_uS='" + _g_uS + '\'' +
+                ", _n_mS='" + _n_mS + '\'' +
+                ", _t_bS='" + _t_bS + '\'' +
+                ", _f_bS='" + _f_bS + '\'' +
+                ", _p_aS='" + _p_aS + '\'' +
+                ", _p_fA='" + _p_fA + '\'' +
+                '}';
+
+    }
 }

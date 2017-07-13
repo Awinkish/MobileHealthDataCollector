@@ -4,6 +4,7 @@ package com.example.khalif.a514app.Fragments;
  * Created by Khalif on 7/12/2017.
  */
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,11 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.khalif.a514app.Databases.PregnantDssDb;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
+import com.example.khalif.a514app.MotherDssActivity;
 import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
@@ -81,6 +84,8 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
         if (dssDb.getRowCount() > 0) {
             pregantQModel = dssDb.getData();
 
+            Toast.makeText(getActivity(), pregantQModel.toString(), Toast.LENGTH_SHORT).show();
+
             b_nS.setSelection((int) pregantQModel.get_b_nS());
             b_hS.setSelection((int) pregantQModel.get_b_hS());
             b_vS.setSelection((int) pregantQModel.get_b_vS());
@@ -127,7 +132,6 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
     public void onExpand(View handle, View content) {
         TextView header = (TextView) handle;
         header.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.ic_expand_less_white_18dp,0);
-
     }
 
     @Override
@@ -137,6 +141,10 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
     }
 
     public void setClientDetails(String rand){
+
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MotherDssActivity.
+//                UID, Context.MODE_PRIVATE);
+//        String rand = sharedPreferences.getString(MotherDssActivity.RAND_ID, null);
 
         pregantQModel.set_b_nS(b_nS.getSelectedItemId());
         pregantQModel.set_b_hS(b_hS.getSelectedItemId());
@@ -160,6 +168,7 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
         pregantQModel.set_f_bS(f_bS.getSelectedItemId());
         pregantQModel.set_p_aS(p_aS.getSelectedItemId());
         pregantQModel.set_p_fA(p_fA.getSelectedItemId());
+        pregantQModel.setRand(rand);
 
         complete_listener.ansQuestionPregnant(pregantQModel);
 

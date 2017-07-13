@@ -154,10 +154,15 @@ public class PostpartumQModel {
         return _f_sX;
     }
 
+    public void setRand(String rand) {
+        this.rand = rand;
+    }
+
     @Override
     public String toString() {
         return "QuestionsModel{" +
-                "_a_dX='" + _a_dX + '\'' +
+                " client_rand='" + rand + '\'' +
+                ", _a_dX='" + _a_dX + '\'' +
                 ", _b_aX='" + _b_aX + '\'' +
                 ", _f_cX=" + _f_cX + '\'' +
                 ", _f_nX=" + _f_nX + '\'' +
@@ -177,9 +182,5 @@ public class PostpartumQModel {
                 ", _m_sP='" + _m_sP + '\'' +
                 ", _a_sV='" + _a_sV + '\'' +
                 '}';
-    }
-
-    public void setRand(String rand) {
-        this.rand = rand;
     }
 }
