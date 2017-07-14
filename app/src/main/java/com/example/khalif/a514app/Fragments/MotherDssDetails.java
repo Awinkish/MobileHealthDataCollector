@@ -33,7 +33,7 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
     SharedPreferences sharedPreferences;
     private Spinner patientStatus;
     private Spinner subLocation;
-    private Spinner communityUnit;
+    private Spinner days;
 
     public MotherDssDetails() {
 

@@ -201,11 +201,14 @@
     <string name="age_death">Age of Deceased</string>
     <string name="nickname">Nickname</string>
     <string name="landmark">Landmarks</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
     <string name="firstTime">New</string>
     <string name="otherTime">Follow up</string>
     <string name="first">First time</string>
     <string name="followUp">Follow up</string>
-    <string name="needAction">Please enter the actions taken after receiving instructions from the clinician.</string>
+    <string name="needAction">Please enter the actions taken after receising instructions from the clinician.</string>
     <string name="patientAge">Patients Age</string>
     <string name="patient_reg">Registration ID/ Mobile</string>
     <string name="Instuct">INSTRUCTIONS</string>
@@ -337,6 +340,12 @@
         <item>Select option</item>
         <item>POSTPARTUM</item>
         <item>PREGNANT</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Select option</item>
+        <item>0-7 days</item>
+        <item>Over 28 days</item>
     </string-array>
 
     <string-array name="sub_location">
