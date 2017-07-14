@@ -26,7 +26,7 @@ import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
 public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandListener {
 
-    ExpandablePanel panelSectionFive, panelSectionSix;
+    ExpandablePanel panelSectionFive, panelSectionSix, panelPregnancyHistory, panelPostpartumHistory;
     Spinner a_dX, b_aX, f_cX,f_nX, l_pX, l_cX, h_bX, h_dX, b_vX, d_bX,
             p_uX, p_fX, w_bX, a_lX, p_sX, f_sX, f_sP, m_sP, a_sV;
 
@@ -67,6 +67,8 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
         panelSectionFive = (ExpandablePanel) rootView.findViewById(R.id.panelSectionFive);
         panelSectionSix = (ExpandablePanel) rootView.findViewById(R.id.panelSectionSix);
+        panelPostpartumHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPostpartumHistory);
+        panelPregnancyHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPregnancyHistory);
 
         panelSectionFive.setOnExpandListener(this);
         panelSectionSix.setOnExpandListener(this);

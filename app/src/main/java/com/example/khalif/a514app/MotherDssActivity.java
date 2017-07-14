@@ -162,8 +162,8 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                 }
                 break;
             case 2:
-                Intent intent = new Intent(getApplicationContext(), MotherDssActivity.class);
-                startActivity(intent);
+                fragchange = new MotherDssDetails();
+                i = 0;
                 break;
             case 10:
                 fragchange = new DraftFragment();
