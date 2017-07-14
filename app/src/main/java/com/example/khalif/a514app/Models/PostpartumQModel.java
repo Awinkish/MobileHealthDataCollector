@@ -2,6 +2,12 @@ package com.example.khalif.a514app.Models;
 
 import android.widget.Spinner;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by Khalif on 7/11/2017.
  */
@@ -9,7 +15,7 @@ public class PostpartumQModel {
 
     private long _a_sV, _a_dX, _b_aX, _f_cX, _f_nX, _l_pX, _l_cX, _h_bX, _h_dX, _b_vX, _d_bX, _p_uX, _p_fX,
             _w_bX, _p_sX, _a_lX, _f_sX, _f_sP, _m_sP;
-    private String rand;
+    private String client_rand;
 
     public PostpartumQModel() {
     }
@@ -154,14 +160,14 @@ public class PostpartumQModel {
         return _f_sX;
     }
 
-    public void setRand(String rand) {
-        this.rand = rand;
+    public void setRand(String client_rand) {
+        this.client_rand = client_rand;
     }
 
     @Override
     public String toString() {
         return "QuestionsModel{" +
-                " client_rand='" + rand + '\'' +
+                " client_rand='" + client_rand + '\'' +
                 ", _a_dX='" + _a_dX + '\'' +
                 ", _b_aX='" + _b_aX + '\'' +
                 ", _f_cX=" + _f_cX + '\'' +

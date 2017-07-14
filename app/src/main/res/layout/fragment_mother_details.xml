@@ -28,17 +28,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/household_num" />
 
-    <TextView
-        style="@style/spinner_label"
-        android:contentDescription="@string/sub_location"
-        android:text="@string/sub_location" />
+    <TextView style="@style/spinner_label" android:contentDescription="@string/sub_location" android:text="@string/sub_location" />
+    <Spinner android:id="@+id/sub_location"  android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/sub_location"></Spinner>
 
-    <TextView
-        style="@style/spinner_label"
-        android:contentDescription="@string/village_name"
-        android:text="@string/village" />
+    <TextView style="@style/spinner_label" android:contentDescription="@string/village_name" android:text="@string/village" />
+    <Spinner android:id="@+id/community_unit"  android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/community_unit"></Spinner>
 
-    <TextView android:text="@string/status" style="@style/spinner_label"/>
+
+    <TextView android:text="@string/status" style="@style/spinner_label" android:contentDescription="@string/status"/>
     <Spinner android:id="@+id/category"  android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/categories"></Spinner>
 
     <!--<Button-->

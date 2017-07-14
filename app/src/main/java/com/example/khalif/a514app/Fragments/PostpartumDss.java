@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.khalif.a514app.Databases.PostpartumDssDb;
+import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
@@ -23,6 +24,8 @@ import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
+
 public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandListener {
 
     ExpandablePanel panelSectionFive, panelSectionSix;
@@ -30,7 +33,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
             p_uX, p_fX, w_bX, a_lX, p_sX, f_sX, f_sP, m_sP, a_sV;
 
     PostpartumQModel clientDetails;
-    private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel> complete_listener;
+    private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
 
     public PostpartumDss(){
     }
@@ -107,7 +110,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            complete_listener = (I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel>) getActivity();
+            complete_listener = (I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel>) getActivity();
         } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString() + " must implement onSomeEventListener");
         }
@@ -160,6 +163,14 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
         complete_listener.ansQuestion(clientDetails);
 
+    }
+
+    public void showDescription(View v) {
+
+        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
+                .setTitleText("Details")
+                .setContentText(v.getContentDescription().toString())
+                .show();
     }
 }
 

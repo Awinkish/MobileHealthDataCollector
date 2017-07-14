@@ -6,21 +6,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.khalif.a514app.Constants.Constant;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.google.gson.Gson;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MotherDetailsDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "MotherDetailsDb";
 
     // Login table name
-    private static final String TABLE_LOGIN = "login2";
+    private static final String TABLE_LOGIN = "login";
 
     // Login Table Columns names
     static MotherDetailsDb sInstance;
@@ -44,7 +47,8 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
-                + Constant.KEY_ID + " INTEGER PRIMARY KEY,"
+                + Constant.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Constant.KEY_RAND + " TEXT,"
                 + Constant.KEY_VALUE + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
     }
@@ -59,13 +63,14 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void save(MotherModel dataModel) {
+    public void save(MotherModel dataModel, String rand) {
         Gson gson = new Gson();
-        String save = gson.toJson(dataModel, MotherModel.class);
+        String model = gson.toJson(dataModel, MotherModel.class);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(Constant.KEY_VALUE, save);
+        values.put(Constant.KEY_RAND, rand);
+        values.put(Constant.KEY_VALUE, model);
 
         // Inserting Row
         db.insert(TABLE_LOGIN, null, values);
@@ -84,16 +89,54 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
         // Move to first row
         cursor.moveToFirst();
-        if (cursor.getCount() > 0) {
+
+        while (!cursor.isAfterLast()) {
             String leads_data = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
             dsrDataModel = gson.fromJson(leads_data, MotherModel.class);
+            //list.add(name);
+            cursor.moveToNext();
         }
+
         cursor.close();
 
-        Log.d("doString", dsrDataModel.toString());
         // db.close();
         // return user
         return dsrDataModel;
+    }
+
+    public JSONArray getDataJson() throws JSONException {
+        MotherModel dsrDataModel = new MotherModel();
+        Gson gson = new Gson();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOGIN;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+
+        Log.d("count", cursor.getCount() + "");
+
+        JSONArray jsonArray = new JSONArray();
+
+        if (cursor.moveToFirst()) {
+            do {
+                String leads_data = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
+                dsrDataModel = gson.fromJson(leads_data, MotherModel.class);
+                String json = gson.toJson(dsrDataModel, MotherModel.class);
+                JSONObject jsonObject = new JSONObject(json);
+                jsonArray.put(jsonObject);
+            } while (cursor.moveToNext());
+        }
+//        while (!cursor.isAfterLast()) {
+//
+//            cursor.moveToNext();
+//        }
+
+        cursor.close();
+
+        // db.close();
+        // return user
+        return jsonArray;
     }
 
 
@@ -122,4 +165,24 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
         // db.close();
     }
 
+    public MotherModel getSpecificData(String search) {
+        MotherModel dsrDataModel = new MotherModel();
+        Gson gson = new Gson();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOGIN + " WHERE client_rand ='"+ search.trim() +"'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            String leads_data = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
+            dsrDataModel = gson.fromJson(leads_data, MotherModel.class);
+        }
+
+        cursor.close();
+
+        // db.close();
+        // return user
+        return dsrDataModel;
+    }
 }

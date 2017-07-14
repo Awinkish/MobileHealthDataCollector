@@ -65,8 +65,8 @@ public class DraftsAdapter extends BaseAdapter {
             txtMessageId.setText("Name : " + s.getClient_name());
             txtMessageDetails.setText("\n Age  : " + s.getClient_age()
                     + "\n Phone  : " + s.getClient_phone()
-                    + "\n Patient Name:  " + s.getClient_latitude()
-                    + "\n Village :  " + s.getClient_longitude()
+                    + "\n Location:  " + s.getClient_status()
+                    + "\n Time :  " + s.getClient_longitude()
             );
 
         }

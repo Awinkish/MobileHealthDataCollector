@@ -334,9 +334,21 @@
     </string-array>
 
     <string-array name="categories">
-        <item>Select Option</item>
-        <item>Postpartum</item>
-        <item>Pregnant</item>
+        <item>Select option</item>
+        <item>POSTPARTUM</item>
+        <item>PREGNANT</item>
+    </string-array>
+
+    <string-array name="sub_location">
+        <item>Select Sub Location</item>
+        <item>MAJENGO</item>
+        <item>KIAMBIU</item>
+    </string-array>
+
+    <string-array name="community_unit">
+        <item>Select Sub Location</item>
+        <item>SOFIA</item>
+        <item>KIAMBIU</item>
     </string-array>
 
     <string-array name="message_alert">

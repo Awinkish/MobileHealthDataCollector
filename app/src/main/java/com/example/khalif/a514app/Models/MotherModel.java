@@ -1,5 +1,11 @@
 package com.example.khalif.a514app.Models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by Khalif on 7/11/2017.
  */
@@ -16,8 +22,8 @@ public class MotherModel {
     private String client_latitude;
     private String client_longitude;
     private String client_age;
-    private String client_status;
-    private String rand;
+    private int client_status;
+    private String client_rand;
 
     public void setClient_id(String client_id) {
         this.client_id = client_id;
@@ -39,7 +45,7 @@ public class MotherModel {
         this.client_longitude = client_longitude;
     }
 
-    public void setClient_status(String client_status) {
+    public void setClient_status(int client_status) {
         this.client_status = client_status;
     }
 
@@ -75,18 +81,50 @@ public class MotherModel {
         return client_longitude;
     }
 
-    public String getClient_status() {
+    public int getClient_status() {
         return client_status;
     }
 
-    public void setRand(String rand) {
-        this.rand = rand;
+    public String getClient_rand() {
+        return client_rand;
+    }
+
+    public void setClient_rand(String client_rand) {
+        this.client_rand = client_rand;
+    }
+
+    public static MotherModel makeFromJSON(JSONObject json) {
+        MotherModel motherModel = new MotherModel();
+        try {
+            motherModel.setClient_name(json.getString("client_name"));
+            motherModel.setClient_age(json.getString("client_age"));
+            motherModel.setClient_phone(json.getString("client_phone"));
+            motherModel.setClient_rand(json.getString("client_rand"));
+
+        } catch (JSONException e) {
+            //if(doLog) Log.e(TAG, CTAG  + e.toString());
+        }
+        return motherModel;
+    }
+
+    public static ArrayList<MotherModel> makeArraylist(JSONArray jsonArray) {
+        ArrayList<MotherModel> messages = new ArrayList<MotherModel>();
+
+        try {
+            for (int i = 0; i < jsonArray.length(); i++){
+                messages.add(MotherModel.makeFromJSON(jsonArray.getJSONObject(i)));
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return messages;
     }
 
     @Override
     public String toString() {
         return "MotherModel{" +
-                "client_rand='" + rand + '\'' +
+                "client_rand='" + client_rand + '\'' +
                 ", client_id='" + client_id + '\'' +
                 ", client_name='" + client_name + "" + '\'' +
                 ", client_phone=" + client_phone + '\'' +
@@ -97,6 +135,5 @@ public class MotherModel {
                 ", client_age='" + client_age + '\'' +
                 '}';
     }
-
 
 }

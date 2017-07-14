@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.khalif.a514app.Constants.Constant;
+import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
 import com.google.gson.Gson;
 
@@ -15,13 +16,13 @@ import com.google.gson.Gson;
  */
 public class PregnantDssDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 6;
 
     // Database Name
     private static final String DATABASE_NAME = "PregnantDssDb";
 
     // Login table name
-    private static final String TABLE_LOGIN = "login2";
+    private static final String TABLE_LOGIN = "login";
 
     // Login Table Columns names
     static PregnantDssDb sInstance;
@@ -42,7 +43,8 @@ public class PregnantDssDb extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_LOGIN + "("
-                + Constant.KEY_ID + " INTEGER PRIMARY KEY,"
+                + Constant.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Constant.KEY_RAND + " TEXT,"
                 + Constant.KEY_VALUE + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
     }
@@ -57,13 +59,14 @@ public class PregnantDssDb extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void save(PregnantQModel dataModel) {
+    public void save(PregnantQModel dataModel, String rand) {
         Gson gson = new Gson();
         String save = gson.toJson(dataModel, PregnantQModel.class);
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(Constant.KEY_VALUE, save);
+        values.put(Constant.KEY_RAND, rand);
 
         // Inserting Row
         db.insert(TABLE_LOGIN, null, values);
@@ -116,6 +119,27 @@ public class PregnantDssDb extends SQLiteOpenHelper {
         // Delete All Rows
         db.delete(TABLE_LOGIN, null, null);
         // db.close();
+    }
+
+    public PregnantQModel getSpecificData(String search) {
+        PregnantQModel dsrDataModel = new PregnantQModel();
+        Gson gson = new Gson();
+        String selectQuery = "SELECT  * FROM " + TABLE_LOGIN + " WHERE client_rand ='"+ search.trim() +"'";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        // Move to first row
+        cursor.moveToFirst();
+        if (cursor.getCount() > 0) {
+            String leads_data = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
+            dsrDataModel = gson.fromJson(leads_data, PregnantQModel.class);
+        }
+
+        cursor.close();
+
+        // db.close();
+        // return user
+        return dsrDataModel;
     }
 
 }
