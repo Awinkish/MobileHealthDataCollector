@@ -1,5 +1,6 @@
 package com.example.khalif.a514app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -104,7 +105,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
 
     public void next(View view) {
 
-        Toast.makeText(getApplicationContext(), rand, Toast.LENGTH_SHORT).show();
         switch (i) {
             case 0:
                 // Get values from
@@ -119,8 +119,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                     PostpartumDss fragment1 = (PostpartumDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
                     fragment1.setClientDetails();
                 }
-
-                break;
         }
         i++;
         change_fragment(i);

@@ -92,8 +92,6 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
         if (dssDb.getRowCount() > 0 && complete_listener.getBol()) {
             pregantQModel = dssDb.getSpecificData(search);
 
-            Toast.makeText(getActivity(), pregantQModel.toString(), Toast.LENGTH_SHORT).show();
-
             b_nS.setSelection((int) pregantQModel.get_b_nS());
             b_hS.setSelection((int) pregantQModel.get_b_hS());
             b_vS.setSelection((int) pregantQModel.get_b_vS());

@@ -79,8 +79,6 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
             clientDetails = dssDb.getData();
 
-            Toast.makeText(getActivity(), clientDetails.toString(), Toast.LENGTH_SHORT).show();
-
             a_dX.setSelection((int) clientDetails.get_a_dX());
             b_aX.setSelection((int) clientDetails.get_b_aX());
             f_cX.setSelection((int) clientDetails.get_f_cX());
@@ -97,10 +95,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
             a_lX.setSelection((int) clientDetails.get_a_lX());
             p_sX.setSelection((int) clientDetails.get_p_sX());
             f_sX.setSelection((int) clientDetails.get_f_sX());
-//            clientModel = clientDb.getData();
-//            name.setText(clientModel.getClient_name());
-//            mobile.setText(clientModel.getClient_phone());
-//            age.setText(clientModel.getClient_age());
+
         }
 
         return rootView;
@@ -163,14 +158,6 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
         complete_listener.ansQuestion(clientDetails);
 
-    }
-
-    public void showDescription(View v) {
-
-        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("Details")
-                .setContentText(v.getContentDescription().toString())
-                .show();
     }
 }
 

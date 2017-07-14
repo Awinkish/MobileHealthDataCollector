@@ -67,8 +67,6 @@ public class DraftFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
-
         draftsAdapter = new DraftsAdapter(getActivity(), motherModels);
         listView.setAdapter(draftsAdapter);
 

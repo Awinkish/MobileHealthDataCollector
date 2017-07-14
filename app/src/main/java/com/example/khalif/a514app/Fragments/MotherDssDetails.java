@@ -103,7 +103,6 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
         age.setText(motherModel.getClient_age());
         patientStatus.setSelection(motherModel.getClient_status());
 
-        //sharedPreferences
     }
 
     public void doTask(String rand) {
@@ -119,11 +118,4 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
         complete_listener.onData(clientModel);
     }
 
-    public void showDescription(View v) {
-        //Toast.makeText(getApplicationContext(), v.getContentDescription().toString(), Toast.LENGTH_SHORT).show();
-        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("Details")
-                .setContentText(v.getContentDescription().toString())
-                .show();
-    }
 }
