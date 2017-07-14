@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.khalif.a514app.Constants.Constant;
 import com.example.khalif.a514app.Databases.PostpartumDssDb;
 import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.MotherModel;
@@ -24,16 +24,15 @@ import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandListener {
 
-    ExpandablePanel panelSectionFive, panelSectionSix;
+    ExpandablePanel panelSectionFive, panelSectionSix, panelPregnancyHistory, panelPostpartumHistory;
     Spinner a_dX, b_aX, f_cX,f_nX, l_pX, l_cX, h_bX, h_dX, b_vX, d_bX,
             p_uX, p_fX, w_bX, a_lX, p_sX, f_sX, f_sP, m_sP, a_sV;
 
     PostpartumQModel clientDetails;
     private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
+    private SharedPreferences sharedPreferences;
 
     public PostpartumDss(){
     }
@@ -68,6 +67,8 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
         panelSectionFive = (ExpandablePanel) rootView.findViewById(R.id.panelSectionFive);
         panelSectionSix = (ExpandablePanel) rootView.findViewById(R.id.panelSectionSix);
+        panelPostpartumHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPostpartumHistory);
+        panelPregnancyHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPregnancyHistory);
 
         panelSectionFive.setOnExpandListener(this);
         panelSectionSix.setOnExpandListener(this);
@@ -75,11 +76,12 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
         PostpartumDssDb dssDb = PostpartumDssDb.getInstance(getActivity());
         dssDb.getWritableDatabase();
 
-        if (dssDb.getRowCount() > 0) {
+        sharedPreferences = getActivity().getSharedPreferences("mother_details", Context.MODE_PRIVATE);
+        String search = sharedPreferences.getString(Constant.DRAFT_KEY, null);
 
-            clientDetails = dssDb.getData();
+        if (dssDb.getRowCount() > 0 && complete_listener.getBol()) {
 
-            Toast.makeText(getActivity(), clientDetails.toString(), Toast.LENGTH_SHORT).show();
+            clientDetails = dssDb.getSpecificData(search);
 
             a_dX.setSelection((int) clientDetails.get_a_dX());
             b_aX.setSelection((int) clientDetails.get_b_aX());
@@ -97,10 +99,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
             a_lX.setSelection((int) clientDetails.get_a_lX());
             p_sX.setSelection((int) clientDetails.get_p_sX());
             f_sX.setSelection((int) clientDetails.get_f_sX());
-//            clientModel = clientDb.getData();
-//            name.setText(clientModel.getClient_name());
-//            mobile.setText(clientModel.getClient_phone());
-//            age.setText(clientModel.getClient_age());
+
         }
 
         return rootView;
@@ -163,14 +162,6 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
         complete_listener.ansQuestion(clientDetails);
 
-    }
-
-    public void showDescription(View v) {
-
-        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("Details")
-                .setContentText(v.getContentDescription().toString())
-                .show();
     }
 }
 

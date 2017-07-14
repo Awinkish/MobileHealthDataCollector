@@ -1,13 +1,5 @@
 package com.example.khalif.a514app.Models;
 
-import android.widget.Spinner;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-
 /**
  * Created by Khalif on 7/11/2017.
  */

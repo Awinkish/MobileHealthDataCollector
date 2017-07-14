@@ -1,5 +1,6 @@
 package com.example.khalif.a514app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -44,14 +45,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
 
         // Create a random key for draft storage and access
         rand = UUID.randomUUID().toString();
-
-//        SharedPreferences sharedPreferences = getSharedPreferences(UID, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.remove(RAND_ID);
-//        editor.apply();
-//
-//        editor.putString(RAND_ID, rand);
-//        editor.apply();
 
         // Add the mother details Fragment
         Fragment frag = new MotherDssDetails();
@@ -104,7 +97,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
 
     public void next(View view) {
 
-        Toast.makeText(getApplicationContext(), rand, Toast.LENGTH_SHORT).show();
         switch (i) {
             case 0:
                 // Get values from
@@ -119,8 +111,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                     PostpartumDss fragment1 = (PostpartumDss) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
                     fragment1.setClientDetails();
                 }
-
-                break;
         }
         i++;
         change_fragment(i);
@@ -171,9 +161,14 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                     fragchange = new PostpartumDss();
                 }
                 break;
+            case 2:
+                fragchange = new MotherDssDetails();
+                i = 0;
+                break;
             case 10:
                 fragchange = new DraftFragment();
                 break;
+
         }
 
         // Replace the current fragment
@@ -185,7 +180,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
     }
 
     public void showDescription(View v) {
-        //Toast.makeText(getApplicationContext(), v.getContentDescription().toString(), Toast.LENGTH_SHORT).show();
         new SweetAlertDialog(MotherDssActivity.this,SweetAlertDialog.NORMAL_TYPE)
                 .setTitleText("Details")
                 .setContentText(v.getContentDescription().toString())

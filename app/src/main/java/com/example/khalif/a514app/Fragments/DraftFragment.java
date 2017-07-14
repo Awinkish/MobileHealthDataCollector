@@ -67,8 +67,6 @@ public class DraftFragment extends Fragment {
             e.printStackTrace();
         }
 
-        Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
-
         draftsAdapter = new DraftsAdapter(getActivity(), motherModels);
         listView.setAdapter(draftsAdapter);
 
@@ -84,7 +82,7 @@ public class DraftFragment extends Fragment {
                 if (clientDb.getRowCount() > 0) {
                     motherModel = clientDb.getSpecificData(search);
 
-                    if(motherModel != null){
+                    if (motherModel != null) {
                         complete_listener.isDraft(true);
                     }
                 }
@@ -111,7 +109,6 @@ public class DraftFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
     }
-
 
     public void doTask(String rand) {
 

@@ -44,7 +44,6 @@ public class DraftActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.mlist);
         MotherDetailsDb motherDetailsDb = MotherDetailsDb.getInstance(getApplicationContext());
 
-        Gson gson = new Gson();
         motherModel = new MotherModel();
         motherModels = new ArrayList<>();
 
@@ -52,7 +51,6 @@ public class DraftActivity extends AppCompatActivity {
 
         try {
             jsonArray = motherDetailsDb.getDataJson();
-            //motherModels = MotherModel.makeArraylist(json);
         } catch (JSONException e) {
             e.printStackTrace();
         }
