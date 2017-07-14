@@ -21,8 +21,6 @@ import com.example.khalif.a514app.Utils.I_fragmentlistener;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpandListener {
 
     ExpandablePanel panelSectionFive, panelSectionSix;

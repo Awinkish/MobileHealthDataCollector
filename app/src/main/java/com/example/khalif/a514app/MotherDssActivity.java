@@ -46,14 +46,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
         // Create a random key for draft storage and access
         rand = UUID.randomUUID().toString();
 
-//        SharedPreferences sharedPreferences = getSharedPreferences(UID, Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.remove(RAND_ID);
-//        editor.apply();
-//
-//        editor.putString(RAND_ID, rand);
-//        editor.apply();
-
         // Add the mother details Fragment
         Fragment frag = new MotherDssDetails();
         getSupportFragmentManager().beginTransaction()
@@ -169,9 +161,14 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                     fragchange = new PostpartumDss();
                 }
                 break;
+            case 2:
+                Intent intent = new Intent(getApplicationContext(), MotherDssActivity.class);
+                startActivity(intent);
+                break;
             case 10:
                 fragchange = new DraftFragment();
                 break;
+
         }
 
         // Replace the current fragment
@@ -183,7 +180,6 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
     }
 
     public void showDescription(View v) {
-        //Toast.makeText(getApplicationContext(), v.getContentDescription().toString(), Toast.LENGTH_SHORT).show();
         new SweetAlertDialog(MotherDssActivity.this,SweetAlertDialog.NORMAL_TYPE)
                 .setTitleText("Details")
                 .setContentText(v.getContentDescription().toString())

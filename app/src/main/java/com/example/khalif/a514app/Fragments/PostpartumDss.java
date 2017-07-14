@@ -12,8 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.khalif.a514app.Constants.Constant;
 import com.example.khalif.a514app.Databases.PostpartumDssDb;
 import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.MotherModel;
@@ -24,8 +24,6 @@ import com.example.khalif.a514app.R;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandListener {
 
     ExpandablePanel panelSectionFive, panelSectionSix;
@@ -34,6 +32,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
     PostpartumQModel clientDetails;
     private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
+    private SharedPreferences sharedPreferences;
 
     public PostpartumDss(){
     }
@@ -75,9 +74,12 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
         PostpartumDssDb dssDb = PostpartumDssDb.getInstance(getActivity());
         dssDb.getWritableDatabase();
 
-        if (dssDb.getRowCount() > 0) {
+        sharedPreferences = getActivity().getSharedPreferences("mother_details", Context.MODE_PRIVATE);
+        String search = sharedPreferences.getString(Constant.DRAFT_KEY, null);
 
-            clientDetails = dssDb.getData();
+        if (dssDb.getRowCount() > 0 && complete_listener.getBol()) {
+
+            clientDetails = dssDb.getSpecificData(search);
 
             a_dX.setSelection((int) clientDetails.get_a_dX());
             b_aX.setSelection((int) clientDetails.get_b_aX());

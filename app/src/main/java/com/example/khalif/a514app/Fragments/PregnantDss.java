@@ -148,10 +148,6 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
 
     public void setClientDetails(String rand){
 
-//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(MotherDssActivity.
-//                UID, Context.MODE_PRIVATE);
-//        String rand = sharedPreferences.getString(MotherDssActivity.RAND_ID, null);
-
         pregantQModel.set_b_nS(b_nS.getSelectedItemId());
         pregantQModel.set_b_hS(b_hS.getSelectedItemId());
         pregantQModel.set_b_vS(b_vS.getSelectedItemId());
@@ -178,13 +174,5 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
 
         complete_listener.ansQuestionPregnant(pregantQModel);
 
-    }
-
-    public void showDescription(View v) {
-        //Toast.makeText(getApplicationContext(), v.getContentDescription().toString(), Toast.LENGTH_SHORT).show();
-        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("Details")
-                .setContentText(v.getContentDescription().toString())
-                .show();
     }
 }
