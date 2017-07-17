@@ -21,9 +21,7 @@ import com.example.khalif.a514app.Utils.I_fragmentlistener;
 import com.google.gson.Gson;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpandListener {
-
-    ExpandablePanel panelSectionFive, panelSectionSix;
+public class MotherDssDetails extends Fragment {
 
     MotherModel clientModel;
     private MaterialEditText mobile, name, age;
@@ -51,8 +49,6 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
         subLocation = (Spinner) rootView.findViewById(R.id.sub_location);
         communityUnit = (Spinner) rootView.findViewById(R.id.community_unit);
 
-        panelSectionFive = (ExpandablePanel) rootView.findViewById(R.id.panelSectionFive);
-        panelSectionSix = (ExpandablePanel) rootView.findViewById(R.id.panelSectionSix);
 
         sharedPreferences = getActivity().getSharedPreferences("mother_details", Context.MODE_PRIVATE);
         String populate = sharedPreferences.getString(Constant.DRAFT_MOTHER, null);
@@ -77,18 +73,6 @@ public class MotherDssDetails extends Fragment implements ExpandablePanel.OnExpa
     @Override
     public void onDetach() {
         super.onDetach();
-    }
-
-    @Override
-    public void onExpand(View handle, View content) {
-        TextView header = (TextView) handle;
-        header.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_less_white_18dp, 0);
-    }
-
-    @Override
-    public void onCollapse(View handle, View content) {
-        TextView header = (TextView) handle;
-        header.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_expand_more_white_18dp, 0);
     }
 
     public void populateFields(String populate) {

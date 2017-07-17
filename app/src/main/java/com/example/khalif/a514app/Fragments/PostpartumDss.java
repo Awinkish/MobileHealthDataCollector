@@ -70,6 +70,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
         panelPostpartumHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPostpartumHistory);
         panelPregnancyHistory = (ExpandablePanel) rootView.findViewById(R.id.panelPregnancyHistory);
 
+        //panelSectionFive.setOnExpandListener(this);
         panelSectionFive.setOnExpandListener(this);
         panelSectionSix.setOnExpandListener(this);
 

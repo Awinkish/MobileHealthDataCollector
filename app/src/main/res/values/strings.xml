@@ -342,8 +342,8 @@
         <item>PREGNANT</item>
     </string-array>
 
-    <string-array name="days">
-        <item>Select option</item>
+    <string-array name="Bdays">
+        <item>Select days</item>
         <item>0-7 days</item>
         <item>Over 28 days</item>
     </string-array>
@@ -355,7 +355,7 @@
     </string-array>
 
     <string-array name="community_unit">
-        <item>Select Sub Location</item>
+        <item>Select Community Unit</item>
         <item>SOFIA</item>
         <item>KIAMBIU</item>
     </string-array>
@@ -367,6 +367,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_baby">babyActivity</string>
+    <string name="title_activity_dss_baby">DssBabyActivity</string>
 
 
 </resources>

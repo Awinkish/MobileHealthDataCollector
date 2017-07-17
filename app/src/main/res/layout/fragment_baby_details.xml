@@ -68,13 +68,13 @@
         </RadioGroup>
 
         <TextView android:text="@string/sub_location" style="@style/spinner_label" android:contentDescription="@string/sub_location"/>
-        <Spinner android:id="@+id/spnSubLoc"  android:layout_width="match_parent" android:layout_height="24dp" android:entries="@array/single_select_value"></Spinner>
+        <Spinner android:id="@+id/spnSubLoc"  android:layout_width="match_parent" android:layout_height="24dp" android:entries="@array/sub_location"></Spinner>
 
         <TextView android:text="@string/village" style="@style/spinner_label" android:contentDescription="@string/village_name"/>
-        <Spinner android:id="@+id/spnVillage" android:layout_width="match_parent" android:layout_height="wrap_content" ></Spinner>
+        <Spinner android:id="@+id/spnVillage" android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/community_unit" ></Spinner>
 
         <TextView android:text="@string/days" style="@style/spinner_label" android:contentDescription="@string/village_name"/>
-        <Spinner android:id="@+id/spnDays"  android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/days"></Spinner>
+        <Spinner android:id="@+id/spnDays"  android:layout_width="match_parent" android:layout_height="wrap_content" android:entries="@array/Bdays"></Spinner>
 
         <LinearLayout
             android:layout_width="match_parent"

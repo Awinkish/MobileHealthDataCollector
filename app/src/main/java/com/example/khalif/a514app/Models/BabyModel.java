@@ -16,8 +16,9 @@ public class BabyModel {
     private String client_latitude;
     private String client_longitude;
     private String client_age;
-    private int client_status;
+    private int client_days;
     private String client_rand;
+    private Boolean client_gender;
 
     public String getClient_id() {
         return client_id;
@@ -47,12 +48,25 @@ public class BabyModel {
         return client_longitude;
     }
 
-    public String getClient_age() {
-        return client_age;
+    public void setClient_days(int client_days) {
+        this.client_days = client_days;
     }
 
-    public int getClient_status() {
-        return client_status;
+    public int getClient_days() {
+
+        return client_days;
+    }
+
+    public Boolean getClient_gender() {
+        return client_gender;
+    }
+
+    public void setClient_gender(Boolean client_gender) {
+        this.client_gender = client_gender;
+    }
+
+    public String getClient_age() {
+        return client_age;
     }
 
     public String getClient_rand() {
@@ -81,9 +95,7 @@ public class BabyModel {
         this.client_age = client_age;
     }
 
-    public void setClient_status(int client_status) {
-        this.client_status = client_status;
-    }
+
 
     public void setClient_rand(String client_rand) {
         this.client_rand = client_rand;
@@ -142,7 +154,6 @@ public class BabyModel {
                 ", client_phone=" + client_phone + '\'' +
                 ", client_latitude=" + client_latitude + '\'' +
                 ", client_longitude=" + client_longitude + '\'' +
-                ", client_status='" + client_status + '\'' +
 
                 '}';
     }

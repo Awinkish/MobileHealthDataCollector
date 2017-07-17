@@ -15,7 +15,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DraftActivity"/>
+        <activity android:name=".DraftActivity" />
+        <activity
+            android:name=".babyActivity"
+            android:label="@string/title_activity_baby"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
