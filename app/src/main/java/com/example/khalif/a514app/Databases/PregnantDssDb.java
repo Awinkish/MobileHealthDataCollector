@@ -16,7 +16,7 @@ import com.google.gson.Gson;
  */
 public class PregnantDssDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     // Database Name
     private static final String DATABASE_NAME = "PregnantDssDb";

@@ -201,11 +201,14 @@
     <string name="age_death">Age of Deceased</string>
     <string name="nickname">Nickname</string>
     <string name="landmark">Landmarks</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+
     <string name="firstTime">New</string>
     <string name="otherTime">Follow up</string>
     <string name="first">First time</string>
     <string name="followUp">Follow up</string>
-    <string name="needAction">Please enter the actions taken after receiving instructions from the clinician.</string>
+    <string name="needAction">Please enter the actions taken after receising instructions from the clinician.</string>
     <string name="patientAge">Patients Age</string>
     <string name="patient_reg">Registration ID/ Mobile</string>
     <string name="Instuct">INSTRUCTIONS</string>
@@ -339,6 +342,12 @@
         <item>PREGNANT</item>
     </string-array>
 
+    <string-array name="Bdays">
+        <item>Select days</item>
+        <item>0-7 days</item>
+        <item>Over 28 days</item>
+    </string-array>
+
     <string-array name="sub_location">
         <item>Select Sub Location</item>
         <item>KIAMBIU</item>
@@ -355,7 +364,7 @@
     </string-array>
 
     <string-array name="community_unit">
-        <item>Select Sub Location</item>
+        <item>Select Community Unit</item>
         <item>SOFIA</item>
         <item>KIAMBIU</item>
     </string-array>
@@ -367,6 +376,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_baby">babyActivity</string>
+    <string name="title_activity_dss_baby">DssBabyActivity</string>
     <string name="clear_draft">Clear drafts</string>
 
 
