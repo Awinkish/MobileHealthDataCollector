@@ -19,7 +19,7 @@ import org.json.JSONObject;
 
 public class BabyDetailsDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 12;
+    private static final int DATABASE_VERSION = 13;
 
     //Database name
     private static final String DATABASE_NAME = "BabyDetailsDb";

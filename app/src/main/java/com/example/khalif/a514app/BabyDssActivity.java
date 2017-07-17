@@ -1,5 +1,6 @@
 package com.example.khalif.a514app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -103,7 +104,7 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
                 fragment.doTask(rand);
                 break;
             case 1:
-                if (days == 2) {
+                if (days == 1) {
                     SevenDays fragment2 = (SevenDays) getSupportFragmentManager().findFragmentById(R.id.fragment_view);
                     fragment2.setClientDetails();
                 } else {
@@ -141,6 +142,10 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
             case R.id.action_draft:
                 change_fragment(10);
                 break;
+            case R.id.action_mother:
+                Intent intent = new Intent(getApplicationContext(), MotherDssActivity.class);
+                startActivity(intent);
+                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -153,7 +158,7 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
                 fragchange = new BabyDssDetails();
                 break;
             case 1:
-                if (days == 2) {
+                if (days == 1) {
                     fragchange = new SevenDays();
                 } else {
                     fragchange = new TwentyEight();

@@ -378,6 +378,8 @@
     <string name="title_activity_baby">babyActivity</string>
     <string name="title_activity_dss_baby">DssBabyActivity</string>
     <string name="clear_draft">Clear drafts</string>
+    <string name="Mdss">MotherDss</string>
+    <string name="Cdss">ChildDss</string>
 
 
 </resources>

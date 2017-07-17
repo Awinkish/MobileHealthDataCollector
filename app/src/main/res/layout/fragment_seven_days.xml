@@ -28,6 +28,8 @@
             android:layout_height="wrap_content"
             style="@style/m_expandable_panel"
             android:clickable="false"
+            app:content="@+id/value"
+            app:handle="@+id/expand"
             app:animationDuration="500"
             app:collapsedHeight="0dp">
 
@@ -76,6 +78,8 @@
                 android:layout_height="wrap_content"
                 style="@style/m_expandable_panel"
                 android:clickable="false"
+                app:content="@+id/value"
+                app:handle="@+id/expand"
                 app:animationDuration="500"
                 app:collapsedHeight="0dp">
 

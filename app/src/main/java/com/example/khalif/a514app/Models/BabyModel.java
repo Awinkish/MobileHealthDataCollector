@@ -142,7 +142,9 @@ public class BabyModel {
     @Override
     public String toString() {
         return "BabyModel{"
-                + "client_rand='" + client_rand + '\'' + ", client_id='" + client_id + '\'' +
+                + "client_rand='" + client_rand + '\'' +
+                ", client_id='" + client_id + '\'' +
+                ", client_days=" + client_days + '\'' +
                 ", client_mName='" + client_mName + "" + '\'' +
                 ", client_bName='" + client_bName + "" + '\'' +
                 ", client_age='" + client_age + '\'' +
