@@ -9,14 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.khalif.a514app.Adapter.DraftsAdapter;
+import com.example.khalif.a514app.Adapter.MotherDraftAdapter;
 import com.example.khalif.a514app.Databases.MotherDetailsDb;
 import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +28,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class DraftActivity extends AppCompatActivity {
 
     ArrayList<MotherModel> motherModels;
-    DraftsAdapter draftsAdapter;
+    MotherDraftAdapter draftsAdapter;
     ListView listView;
     Context context;
     MotherModel motherModel;
@@ -57,7 +56,7 @@ public class DraftActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
 
-        draftsAdapter = new DraftsAdapter(this, motherModels);
+        draftsAdapter = new MotherDraftAdapter(this, motherModels);
         listView.setAdapter(draftsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

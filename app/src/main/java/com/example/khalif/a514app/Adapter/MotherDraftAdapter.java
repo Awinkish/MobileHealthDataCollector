@@ -17,12 +17,12 @@ import java.util.ArrayList;
  */
 
 
-public class DraftsAdapter extends BaseAdapter {
+public class MotherDraftAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<MotherModel> motherModels;
     boolean _show_button = true;
-    public  DraftsAdapter(Context context, ArrayList<MotherModel> motherModels){
+    public MotherDraftAdapter(Context context, ArrayList<MotherModel> motherModels){
         this.context = context;
         this.motherModels = motherModels;
     }

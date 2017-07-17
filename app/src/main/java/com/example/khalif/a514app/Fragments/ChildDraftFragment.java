@@ -11,9 +11,12 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.khalif.a514app.Adapter.DraftsAdapter;
+import com.example.khalif.a514app.Adapter.ChildDraftAdapter;
+import com.example.khalif.a514app.Adapter.MotherDraftAdapter;
 import com.example.khalif.a514app.Constants.Constant;
+import com.example.khalif.a514app.Databases.BabyDetailsDb;
 import com.example.khalif.a514app.Databases.MotherDetailsDb;
+import com.example.khalif.a514app.Models.BabyModel;
 import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
@@ -28,17 +31,15 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import cn.pedant.SweetAlert.SweetAlertDialog;
-
 /**
  * Created by Khalif on 7/13/2017.
  */
-public class DraftFragment extends Fragment {
+public class ChildDraftFragment extends Fragment {
 
-    ArrayList<MotherModel> motherModels;
-    DraftsAdapter draftsAdapter;
+    ArrayList<BabyModel> babyList;
+    ChildDraftAdapter draftsAdapter;
     ListView listView;
-    MotherModel motherModel;
+    BabyModel babyModel;
     JSONObject json;
     JSONArray jsonArray;
     I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
@@ -52,37 +53,38 @@ public class DraftFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.activity_draft, container, false);
 
         listView = (ListView) rootView.findViewById(R.id.mlist);
-        MotherDetailsDb motherDetailsDb = MotherDetailsDb.getInstance(getActivity());
+        BabyDetailsDb babyDetailsDb = BabyDetailsDb.getInstance(getActivity());
 
         gson = new Gson();
-        motherModel = new MotherModel();
-        motherModels = new ArrayList<>();
+        babyModel = new BabyModel();
+        babyList = new ArrayList<>();
 
         jsonArray = new JSONArray();
 
         try {
-            jsonArray = motherDetailsDb.getDataJson();
-            motherModels = MotherModel.makeArraylist(jsonArray);
+            jsonArray = babyDetailsDb.getDataJson();
+            Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
+            babyList = BabyModel.makeArrayList(jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        draftsAdapter = new DraftsAdapter(getActivity(), motherModels);
+        draftsAdapter = new ChildDraftAdapter(getActivity(), babyList);
         listView.setAdapter(draftsAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                search = motherModels.get(position).getClient_rand();
+                search = babyList.get(position).getClient_rand();
 
                 Toast.makeText(getActivity(), search, Toast.LENGTH_SHORT).show();
-                MotherDetailsDb clientDb = MotherDetailsDb.getInstance(getActivity());
+                BabyDetailsDb clientDb = BabyDetailsDb.getInstance(getActivity());
                 clientDb.getWritableDatabase();
 
                 if (clientDb.getRowCount() > 0) {
-                    motherModel = clientDb.getSpecificData(search);
+                    babyModel = clientDb.getSpecificData(search);
 
-                    if (motherModel != null) {
+                    if (babyModel != null) {
                         complete_listener.isDraft(true);
                     }
                 }
@@ -117,18 +119,17 @@ public class DraftFragment extends Fragment {
     public void change_fragment() {
         Fragment fragchange = null;
 
-        fragchange = new MotherDssDetails();
-        dss = new MotherDssDetails();
+        fragchange = new BabyDssDetails();
 
         // Replace the current fragment
         if (fragchange != null) {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_view, fragchange).commit();
         }
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("mother_details", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("baby_details", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
-        editor.putString(Constant.DRAFT_MOTHER, gson.toJson(motherModel, MotherModel.class));
+        editor.putString(Constant.DRAFT_BABY, gson.toJson(babyModel, BabyModel.class));
         editor.putString(Constant.DRAFT_KEY, search);
         editor.apply();
 

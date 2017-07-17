@@ -43,7 +43,7 @@ public class BabyDssDetails extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_baby_details,container,false);
-        BabyModel babyModel = new BabyModel();
+        babyModel = new BabyModel();
 
         mName = (MaterialEditText)rootView.findViewById(R.id.txtMother);
         bName = (MaterialEditText)rootView.findViewById(R.id.txtName);
@@ -59,7 +59,7 @@ public class BabyDssDetails extends Fragment {
         String populate = sharedPreferences.getString(Constant.DRAFT_BABY, null);
 
 
-        if (populate !=null && complete_listener.getBol()){
+        if (populate != null && complete_listener.getBol()){
             populateFields(populate);
         }
         return rootView;
@@ -85,8 +85,9 @@ public class BabyDssDetails extends Fragment {
         babyModel.setClient_age(age.getText().toString());
         babyModel.setClient_weight(weight.getText().toString());
         babyModel.setClient_phone(mobile.getText().toString());
-        babyModel.setClient_days((int)days.getSelectedItem());
-        babyModel.setClient_gender(rGender.isActivated());
+        babyModel.setClient_days(days.getSelectedItemId());
+        babyModel.setClient_rand(rand);
+        babyModel.setClient_gender(false);
 
     }
 

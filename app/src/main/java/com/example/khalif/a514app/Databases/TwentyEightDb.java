@@ -26,8 +26,8 @@ public class TwentyEightDb extends SQLiteOpenHelper {
     }
 
     //Create an instance of the database
-    public static TwentyEightDb getInstance(Context context){
-        if(sInstance == null){
+    public static TwentyEightDb getInstance(Context context) {
+        if (sInstance == null) {
             sInstance = new TwentyEightDb(context);
         }
 
@@ -37,10 +37,10 @@ public class TwentyEightDb extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
-        String CREATE_TABLE_LOGIN = "CREATE TABLE " + TABLE_LOGIN +"("
-                + Constant.KEY_ID +"INTEGER PRIMARY KEY AUTOINCREMENT"
-                +Constant.KEY_RAND + "TEXT"
-                +Constant.KEY_VALUE + "TEXT";
+        String CREATE_TABLE_LOGIN = "CREATE TABLE " + TABLE_LOGIN + "("
+                + Constant.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Constant.KEY_RAND + " TEXT,"
+                + Constant.KEY_VALUE + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE_LOGIN);
     }
 
@@ -50,30 +50,30 @@ public class TwentyEightDb extends SQLiteOpenHelper {
         onCreate(sqLiteDatabase);
     }
 
-    public void save(TwentyEightQModel twentyEightQModel, String rand){
+    public void save(TwentyEightQModel twentyEightQModel, String rand) {
         Gson gson = new Gson();
-        String save= gson.toJson(twentyEightQModel,TwentyEightQModel.class);
+        String save = gson.toJson(twentyEightQModel, TwentyEightQModel.class);
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Constant.KEY_VALUE,save);
-        contentValues.put(Constant.KEY_RAND,rand);
+        contentValues.put(Constant.KEY_VALUE, save);
+        contentValues.put(Constant.KEY_RAND, rand);
 
-        sqLiteDatabase.insert(TABLE_LOGIN,null,contentValues);
+        sqLiteDatabase.insert(TABLE_LOGIN, null, contentValues);
     }
 
-    public TwentyEightQModel getData(){
+    public TwentyEightQModel getData() {
         TwentyEightQModel twentyEightQModel = new TwentyEightQModel();
         Gson gson = new Gson();
 
-        String getQuery = "SELECT * FROM "+ TABLE_LOGIN;
+        String getQuery = "SELECT * FROM " + TABLE_LOGIN;
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(getQuery,null);
+        Cursor cursor = sqLiteDatabase.rawQuery(getQuery, null);
 
         cursor.moveToFirst();
-        if (cursor.getCount()>0){
+        if (cursor.getCount() > 0) {
             String leadsdata = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
-            twentyEightQModel = gson.fromJson(leadsdata,TwentyEightQModel.class);
+            twentyEightQModel = gson.fromJson(leadsdata, TwentyEightQModel.class);
         }
         cursor.close();
 
@@ -81,41 +81,39 @@ public class TwentyEightDb extends SQLiteOpenHelper {
     }
 
     //Count number of rows
-    public int getRowCount(){
-        String countQuery = "SELECT * FROM " +TABLE_LOGIN;
+    public int getRowCount() {
+        String countQuery = "SELECT * FROM " + TABLE_LOGIN;
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(countQuery,null);
+        Cursor cursor = sqLiteDatabase.rawQuery(countQuery, null);
         int rowCount = cursor.getCount();
 
         cursor.close();
 
-        return  rowCount;
+        return rowCount;
     }
 
-    public void resetTable(){
+    public void resetTable() {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.delete(TABLE_LOGIN,null,null);
+        sqLiteDatabase.delete(TABLE_LOGIN, null, null);
     }
 
-    public TwentyEightQModel getSpecificData(String search){
+    public TwentyEightQModel getSpecificData(String search) {
         TwentyEightQModel twentyEightQModel = new TwentyEightQModel();
         Gson gson = new Gson();
 
-        String getQuery = "SELECT * FROM "+TABLE_LOGIN+"WHERE client_rand = "+search;
+        String getQuery = "SELECT * FROM " + TABLE_LOGIN + "WHERE client_rand = " + search;
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery(getQuery,null);
+        Cursor cursor = sqLiteDatabase.rawQuery(getQuery, null);
 
         cursor.moveToFirst();
-        if(cursor.getCount()>0){
+        if (cursor.getCount() > 0) {
             String leadsdata = cursor.getString(cursor.getColumnIndex(Constant.KEY_VALUE));
-            twentyEightQModel = gson.fromJson(leadsdata,TwentyEightQModel.class);
+            twentyEightQModel = gson.fromJson(leadsdata, TwentyEightQModel.class);
         }
         cursor.close();
 
         return twentyEightQModel;
     }
-
-
 
 
 }

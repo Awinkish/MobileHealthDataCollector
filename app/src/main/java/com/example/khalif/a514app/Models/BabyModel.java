@@ -16,7 +16,7 @@ public class BabyModel {
     private String client_latitude;
     private String client_longitude;
     private String client_age;
-    private int client_days;
+    private long client_days;
     private String client_rand;
     private Boolean client_gender;
 
@@ -48,12 +48,11 @@ public class BabyModel {
         return client_longitude;
     }
 
-    public void setClient_days(int client_days) {
+    public void setClient_days(long client_days) {
         this.client_days = client_days;
     }
 
-    public int getClient_days() {
-
+    public long getClient_days() {
         return client_days;
     }
 
@@ -78,7 +77,6 @@ public class BabyModel {
     }
 
 
-
     public void setClient_phone(String client_phone) {
         this.client_phone = client_phone;
     }
@@ -94,8 +92,6 @@ public class BabyModel {
     public void setClient_age(String client_age) {
         this.client_age = client_age;
     }
-
-
 
     public void setClient_rand(String client_rand) {
         this.client_rand = client_rand;
@@ -113,7 +109,7 @@ public class BabyModel {
         this.client_mName = client_mName;
     }
 
-    public static BabyModel makeFromJson(JSONObject jsonObject){
+    public static BabyModel makeFromJson(JSONObject jsonObject) {
         BabyModel babyModel = new BabyModel();
         try {
             babyModel.setClient_mName(jsonObject.getString("client_mName"));
@@ -130,11 +126,11 @@ public class BabyModel {
         return babyModel;
     }
 
-    public static ArrayList<BabyModel> arrayList(JSONArray jsonArray){
+    public static ArrayList<BabyModel> makeArrayList(JSONArray jsonArray) {
         ArrayList<BabyModel> messages = new ArrayList<>();
         try {
-            for (int i=0;i<jsonArray.length();i++){
-               messages.add(BabyModel.makeFromJson(jsonArray.getJSONObject(i)));
+            for (int i = 0; i < jsonArray.length(); i++) {
+                messages.add(BabyModel.makeFromJson(jsonArray.getJSONObject(i)));
             }
         } catch (JSONException e) {
             e.printStackTrace();

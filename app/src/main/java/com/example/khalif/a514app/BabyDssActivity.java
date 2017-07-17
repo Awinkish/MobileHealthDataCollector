@@ -2,24 +2,20 @@ package com.example.khalif.a514app;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.support.v4.app.Fragment;
 import android.widget.Toast;
 
 import com.example.khalif.a514app.Databases.BabyDetailsDb;
 import com.example.khalif.a514app.Databases.SevenDaysDb;
 import com.example.khalif.a514app.Databases.TwentyEightDb;
 import com.example.khalif.a514app.Fragments.BabyDssDetails;
-import com.example.khalif.a514app.Fragments.DraftFragment;
-import com.example.khalif.a514app.Fragments.MotherDssDetails;
-import com.example.khalif.a514app.Fragments.PostpartumDss;
-import com.example.khalif.a514app.Fragments.PregnantDss;
+import com.example.khalif.a514app.Fragments.ChildDraftFragment;
 import com.example.khalif.a514app.Fragments.SevenDays;
 import com.example.khalif.a514app.Fragments.TwentyEight;
 import com.example.khalif.a514app.Models.BabyModel;
@@ -59,13 +55,13 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
 
     @Override
     public void onData(BabyModel babyModel) {
-      days = babyModel.getClient_days();
+        days = (int) babyModel.getClient_days();
         rand = babyModel.getClient_rand();
-        BabyDetailsDb babyDetailsDb = BabyDetailsDb.getsInstance(getApplicationContext());
+        BabyDetailsDb babyDetailsDb = BabyDetailsDb.getInstance(getApplicationContext());
         babyDetailsDb.getWritableDatabase();
 
         if(!bol){
-            babyDetailsDb.save(babyModel,rand);
+            babyDetailsDb.save(babyModel, rand);
         }
 
     }
@@ -168,7 +164,7 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
                 i = 0;
                 break;
             case 10:
-                fragchange = new DraftFragment();
+                fragchange = new ChildDraftFragment();
                 break;
 
         }

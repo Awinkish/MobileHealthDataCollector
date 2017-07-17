@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 
 public class SevenDaysDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     private static final String DATABASE_NAME = "sevenDaysDb";
 
@@ -35,10 +35,10 @@ public class SevenDaysDb extends SQLiteOpenHelper {
     //Creating tables
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String CREATE_TABLE_LOGIN = "CREATE TABLE " + TABLE_LOGIN +"("
-                + Constant.KEY_ID +"INTEGER PRIMARY KEY AUTOINCREMENT"
-                +Constant.KEY_RAND + "TEXT"
-                +Constant.KEY_VALUE + "TEXT";
+        String CREATE_TABLE_LOGIN = "CREATE TABLE " + TABLE_LOGIN + "("
+                + Constant.KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + Constant.KEY_RAND + " TEXT,"
+                + Constant.KEY_VALUE + " TEXT" + ")";
         sqLiteDatabase.execSQL(CREATE_TABLE_LOGIN);
     }
 

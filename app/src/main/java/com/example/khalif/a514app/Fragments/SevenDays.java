@@ -117,8 +117,6 @@ public class SevenDays extends Fragment implements ExpandablePanel.OnExpandListe
     }
 
     public void setClientDetails(){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(BabyDssActivity.UID, Context.MODE_PRIVATE);
-        String rand = sharedPreferences.getString(BabyDssActivity.RAND_ID,null);
 
         sevenQModel.setNot_breathing(not_breathing.getSelectedItemId());
         sevenQModel.setYellow_skin(yellow_skin.getSelectedItemId());

@@ -127,10 +127,7 @@ public class MotherDetailsDb extends SQLiteOpenHelper {
                 jsonArray.put(jsonObject);
             } while (cursor.moveToNext());
         }
-//        while (!cursor.isAfterLast()) {
-//
-//            cursor.moveToNext();
-//        }
+
 
         cursor.close();
 

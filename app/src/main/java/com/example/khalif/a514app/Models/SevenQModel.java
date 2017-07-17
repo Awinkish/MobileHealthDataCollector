@@ -2,8 +2,8 @@ package com.example.khalif.a514app.Models;
 
 
 public class SevenQModel {
-    private long not_breathing,yellow_skin,feet_blue,not_sucking,tiredness,always_sleepy,fast_breathing,
-            chest_drawing,loose_weight,yellow_soles,start_feeding,fed_birth,child_fed;
+    private long not_breathing, yellow_skin, feet_blue, not_sucking, tiredness, always_sleepy, fast_breathing,
+            chest_drawing, loose_weight, yellow_soles, start_feeding, fed_birth, child_fed;
     private String client_rand;
 
     public long getNot_breathing() {
@@ -134,7 +134,7 @@ public class SevenQModel {
                 ", yellow_soles='" + yellow_soles + '\'' +
                 ", start_feeding='" + start_feeding + '\'' +
                 ", fed_birth='" + fed_birth + '\'' +
-                ", child_fed='" + child_fed+ '\'' +
+                ", child_fed='" + child_fed + '\'' +
                 '}';
     }
 }

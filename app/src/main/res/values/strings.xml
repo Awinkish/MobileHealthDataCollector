@@ -49,7 +49,6 @@
     <string name="atBirth">First seven days (0 - 7 days)</string>
     <string name="sevenDays">First seven days</string>
     <string name="first_seven_days">First seven days</string>
-    <string name="days">Days</string>
     <string name="form_place">Place of Visit</string>
     <string name="house_member_name">Fullname + name of CHV</string>
     <string name="fullyImmunized">Fully Immunized</string>

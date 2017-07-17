@@ -13,7 +13,7 @@ import android.widget.Toast;
 import com.example.khalif.a514app.Databases.MotherDetailsDb;
 import com.example.khalif.a514app.Databases.PostpartumDssDb;
 import com.example.khalif.a514app.Databases.PregnantDssDb;
-import com.example.khalif.a514app.Fragments.DraftFragment;
+import com.example.khalif.a514app.Fragments.MotherDraftFragment;
 import com.example.khalif.a514app.Fragments.MotherDssDetails;
 import com.example.khalif.a514app.Fragments.PostpartumDss;
 import com.example.khalif.a514app.Fragments.PregnantDss;
@@ -166,7 +166,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                 i = 0;
                 break;
             case 10:
-                fragchange = new DraftFragment();
+                fragchange = new MotherDraftFragment();
                 break;
 
         }
