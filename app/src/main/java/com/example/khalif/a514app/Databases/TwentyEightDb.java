@@ -13,7 +13,7 @@ import com.google.gson.Gson;
 
 public class TwentyEightDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 8;
+    private static final int DATABASE_VERSION = 10;
 
     private static final String DATABASE_NAME = "twentyEightDb";
 
@@ -46,7 +46,7 @@ public class TwentyEightDb extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS" + TABLE_LOGIN);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_LOGIN);
         onCreate(sqLiteDatabase);
     }
 
@@ -101,7 +101,7 @@ public class TwentyEightDb extends SQLiteOpenHelper {
         TwentyEightQModel twentyEightQModel = new TwentyEightQModel();
         Gson gson = new Gson();
 
-        String getQuery = "SELECT * FROM " + TABLE_LOGIN + "WHERE client_rand = " + search;
+        String getQuery = "SELECT * FROM " + TABLE_LOGIN + " WHERE client_rand = " + search;
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery(getQuery, null);
 

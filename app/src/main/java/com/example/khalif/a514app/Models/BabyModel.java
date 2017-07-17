@@ -112,8 +112,8 @@ public class BabyModel {
     public static BabyModel makeFromJson(JSONObject jsonObject) {
         BabyModel babyModel = new BabyModel();
         try {
-            babyModel.setClient_mName(jsonObject.getString("client_mName"));
-            babyModel.setClient_bName(jsonObject.getString("clinet_bName"));
+//            babyModel.setClient_mName(jsonObject.getString("client_mName"));
+//            babyModel.setClient_bName(jsonObject.getString("clinet_bName"));
             babyModel.setClient_age(jsonObject.getString("client_age"));
             babyModel.setClient_weight(jsonObject.getString("client_weight"));
             babyModel.setClient_phone(jsonObject.getString("client_phone"));

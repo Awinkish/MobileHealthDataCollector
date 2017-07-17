@@ -39,7 +39,7 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
     private boolean bol;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baby_dss);
 

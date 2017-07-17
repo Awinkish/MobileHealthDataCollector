@@ -5,11 +5,13 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.khalif.a514app.Constants.Constant;
 import com.example.khalif.a514app.Models.BabyModel;
@@ -25,14 +27,13 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 public class BabyDssDetails extends Fragment {
 
     SharedPreferences sharedPreferences;
-    private MaterialEditText mName,bName, age, weight, mobile;
+    private MaterialEditText mName, bName, age, weight, mobile;
     private RadioGroup rGender;
     private Spinner days;
     private Spinner spnSubLoc;
     private Spinner community_unit;
 
     BabyModel babyModel;
-
 
     I_fragmentlistener<BabyModel, SevenQModel, TwentyEightQModel, DraftModel> complete_listener;
 
@@ -42,14 +43,14 @@ public class BabyDssDetails extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_baby_details,container,false);
+        View rootView = inflater.inflate(R.layout.fragment_baby_details, container, false);
         babyModel = new BabyModel();
 
-        mName = (MaterialEditText)rootView.findViewById(R.id.txtMother);
-        bName = (MaterialEditText)rootView.findViewById(R.id.txtName);
-        age = (MaterialEditText)rootView.findViewById(R.id.txtAgeId);
-        weight = (MaterialEditText)rootView.findViewById(R.id.txtBabyWeight);
-        mobile = (MaterialEditText)rootView.findViewById(R.id.txtNumber);
+        mName = (MaterialEditText) rootView.findViewById(R.id.txtMother);
+        bName = (MaterialEditText) rootView.findViewById(R.id.txtName);
+        age = (MaterialEditText) rootView.findViewById(R.id.txtAgeId);
+        weight = (MaterialEditText) rootView.findViewById(R.id.txtBabyWeight);
+        mobile = (MaterialEditText) rootView.findViewById(R.id.txtNumber);
         spnSubLoc = (Spinner) rootView.findViewById(R.id.sub_location);
         community_unit = (Spinner) rootView.findViewById(R.id.community_unit);
         days = (Spinner) rootView.findViewById(R.id.spnDays);
@@ -59,27 +60,27 @@ public class BabyDssDetails extends Fragment {
         String populate = sharedPreferences.getString(Constant.DRAFT_BABY, null);
 
 
-        if (populate != null && complete_listener.getBol()){
+        if (populate != null && complete_listener.getBol()) {
             populateFields(populate);
         }
         return rootView;
     }
 
-    public void populateFields(String populate){
+    public void populateFields(String populate) {
         Gson gson = new Gson();
 
-        BabyModel babyModel = gson.fromJson(populate,BabyModel.class);
+        BabyModel babyModel = gson.fromJson(populate, BabyModel.class);
         mName.setText(babyModel.getClient_mName());
         bName.setText(babyModel.getClient_bName());
         age.setText(babyModel.getClient_age());
         weight.setText(babyModel.getClient_weight());
         mobile.setText(babyModel.getClient_phone());
         //days.setSelection(babyModel.getClient_days(days.getSelectedItemId()));
-        rGender.setSelected(true);
+        //rGender.setSelected(true);
 
     }
 
-    public void doTask(String rand){
+    public void doTask(String rand) {
         babyModel.setClient_mName(mName.getText().toString());
         babyModel.setClient_bName(bName.getText().toString());
         babyModel.setClient_age(age.getText().toString());
@@ -89,14 +90,18 @@ public class BabyDssDetails extends Fragment {
         babyModel.setClient_rand(rand);
         babyModel.setClient_gender(false);
 
+        Log.d("here2", babyModel.toString());
+
+        complete_listener.onData(babyModel);
+
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        try{
-            complete_listener = (I_fragmentlistener<BabyModel,SevenQModel,TwentyEightQModel,DraftModel>) getActivity();
-        }catch (ClassCastException e){
+        try {
+            complete_listener = (I_fragmentlistener<BabyModel, SevenQModel, TwentyEightQModel, DraftModel>) getActivity();
+        } catch (ClassCastException e) {
             throw new ClassCastException(getActivity().toString() + " must implement onSomeEventListener");
         }
     }

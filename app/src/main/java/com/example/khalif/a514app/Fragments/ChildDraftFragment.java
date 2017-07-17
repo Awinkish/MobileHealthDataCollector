@@ -63,8 +63,10 @@ public class ChildDraftFragment extends Fragment {
 
         try {
             jsonArray = babyDetailsDb.getDataJson();
-            Toast.makeText(getActivity(), jsonArray.toString(), Toast.LENGTH_SHORT).show();
+
             babyList = BabyModel.makeArrayList(jsonArray);
+
+            Toast.makeText(getActivity(), babyList.toString(), Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
             e.printStackTrace();
         }
