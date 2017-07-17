@@ -125,7 +125,6 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
     public void onExpand(View handle, View content) {
         TextView header = (TextView) handle;
         header.setCompoundDrawablesWithIntrinsicBounds(0,0, R.drawable.ic_expand_less_white_18dp,0);
-
     }
 
     @Override

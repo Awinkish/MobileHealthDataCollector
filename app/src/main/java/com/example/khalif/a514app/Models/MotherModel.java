@@ -1,10 +1,15 @@
 package com.example.khalif.a514app.Models;
 
+import android.content.Context;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import com.example.khalif.a514app.R;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 /**
  * Created by Khalif on 7/11/2017.
@@ -120,6 +125,91 @@ public class MotherModel {
         }
         return messages;
     }
+
+//    public ValidateModel isSet(Context context){
+//
+//        if (a_dX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.abdominal_discharge, context);
+//            return;
+//        }
+//        if (b_aX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.bad_abdominal, context);
+//            return;
+//        }
+//        if (f_nX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.fever_chills, context);
+//            return;
+//        }
+//        if (f_cX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.fever_nochills, context);
+//            return;
+//        }
+//        if (h_bX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.high_blood, context);
+//            return;
+//        }
+//        if (l_pX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.labour_pain, context);
+//            return;
+//        }
+//        if (l_cX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.loss_consciousness, context);
+//            return;
+//        }
+//        if (h_dX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.head_dizzy, context);
+//            return;
+//        }
+//        if (b_vX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.Blurred_vision, context);
+//            return;
+//        }
+//        if (d_bX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.diff_breathing, context);
+//            return;
+//        }
+//        if (p_uX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.pass_urine, context);
+//            return;
+//        }
+//        if (p_fX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.palm_feet, context);
+//            return;
+//        }
+//        if (w_bX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.water_break, context);
+//            return;
+//        }
+//        if (a_lX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.arm_legs, context);
+//            return;
+//        }
+//        if (p_sX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.placenta, context);
+//            return;
+//        }
+//        if (f_sX.getSelectedItemId() == 0) {
+//            showInvalidMessage(R.string.foul_smelling, context);
+//            return;
+//        }
+//        if (t_bS.getSelectedItemPosition() == 0) {
+//            showInvalidMessage(R.string.time_birth, context);
+//            return;
+//        }
+//        if (f_bS.getSelectedItemPosition() == 0) {
+//            showInvalidMessage(R.string.first_baby, context);
+//            return;
+//        }
+//        if (p_aS.getSelectedItemPosition() == 0) {
+//            showInvalidMessage(R.string.pnc_attended, context);
+//            return;
+//        }
+//    }
+//
+//    public void showInvalidMessage(int message, Context context) {
+//        new SweetAlertDialog(context, SweetAlertDialog.WARNING_TYPE)
+//                .setContentText("Select If " + context.getResources().getString(message)).show();
+//    }
 
     @Override
     public String toString() {

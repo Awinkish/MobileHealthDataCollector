@@ -1,6 +1,5 @@
 package com.example.khalif.a514app;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -163,6 +162,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                 break;
             case 2:
                 fragchange = new MotherDssDetails();
+                isDraft(false);
                 i = 0;
                 break;
             case 10:
@@ -180,7 +180,8 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
     }
 
     public void showDescription(View v) {
-        new SweetAlertDialog(MotherDssActivity.this,SweetAlertDialog.NORMAL_TYPE)
+        //Toast.makeText(getApplicationContext(), v.getContentDescription().toString(), Toast.LENGTH_SHORT).show();
+        new SweetAlertDialog(MotherDssActivity.this, SweetAlertDialog.NORMAL_TYPE)
                 .setTitleText("Details")
                 .setContentText(v.getContentDescription().toString())
                 .show();
