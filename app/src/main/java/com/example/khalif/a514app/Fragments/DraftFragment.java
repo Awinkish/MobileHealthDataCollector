@@ -133,11 +133,4 @@ public class DraftFragment extends Fragment {
         editor.apply();
 
     }
-
-    public void showDescription(View v) {
-        new SweetAlertDialog(getActivity(), SweetAlertDialog.NORMAL_TYPE)
-                .setTitleText("Details")
-                .setContentText(v.getContentDescription().toString())
-                .show();
-    }
 }

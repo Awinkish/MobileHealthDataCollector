@@ -7,4 +7,10 @@
         android:title="@string/action_draft"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_clear_draft"
+        android:orderInCategory="100"
+        android:title="@string/clear_draft"
+        app:showAsAction="never" />
+
 </menu>
