@@ -10,5 +10,7 @@ public class Constant {
     public static final String DRAFT_BABY = "draft_baby";
     public static final String IS_DRAFT = "is_draft";
     public static final String DRAFT_KEY = "draft_key";
+    public static final String ACTIVITY = "activity";
     public static String KEY_RAND = "client_rand";
+    public static String KEY_ACTIVITY = "client_activity";
 }

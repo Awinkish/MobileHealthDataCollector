@@ -1,6 +1,7 @@
 package com.example.khalif.a514app.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.example.khalif.a514app.Models.DraftModel;
 import com.example.khalif.a514app.Models.SevenQModel;
 import com.example.khalif.a514app.Models.TwentyEightQModel;
 import com.example.khalif.a514app.R;
+import com.example.khalif.a514app.ReferralActivity;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
@@ -36,12 +38,18 @@ public class TwentyEight extends Fragment implements ExpandablePanel.OnExpandLis
             not_sucking_2,constipation,urinate,start_feeding,fed_birth,child_fed;
 
     private I_fragmentlistener<BabyModel,SevenQModel,TwentyEightQModel,DraftModel> i_fragmentlistener;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences, shared;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_twenty_eight,container,false);
+
+        shared = getActivity().getSharedPreferences(Constant.ACTIVITY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+
+        editor.putInt(Constant.KEY_ACTIVITY, 2);
+        editor.apply();
 
         twentyEightQModel = new TwentyEightQModel();
         panelSectionTwo = (ExpandablePanel) view.findViewById(R.id.panelSectionTwo);
@@ -68,8 +76,8 @@ public class TwentyEight extends Fragment implements ExpandablePanel.OnExpandLis
         TwentyEightDb twentyEightDb = TwentyEightDb.getInstance(getActivity());
         twentyEightDb.getWritableDatabase();
 
-        sharedPreferences = getActivity().getSharedPreferences("twentyEight",Context.MODE_PRIVATE);
-        String search = sharedPreferences.getString(Constant.DRAFT_KEY,null);
+        sharedPreferences = getActivity().getSharedPreferences("baby_details",Context.MODE_PRIVATE);
+        String search = sharedPreferences.getString(Constant.DRAFT_KEY, null);
 
         if(twentyEightDb.getRowCount()>0 && i_fragmentlistener.getBol()){
             twentyEightQModel = twentyEightDb.getSpecificData(search);
@@ -86,6 +94,7 @@ public class TwentyEight extends Fragment implements ExpandablePanel.OnExpandLis
             fed_birth.setSelection((int)twentyEightQModel.getFed_birth());
             child_fed.setSelection((int)twentyEightQModel.getChild_fed());
         }
+
 
         return view;
     }

@@ -52,6 +52,7 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
 
         btn_back = (Button)findViewById(R.id.btn_back);
         btn_next = (Button)findViewById(R.id.btn_next);
+
     }
 
     @Override
@@ -164,20 +165,18 @@ public class BabyDssActivity extends AppCompatActivity implements I_fragmentlist
                     fragchange = new TwentyEight();
                 }
                 break;
-            case 2:
-                fragchange = new BabyDssDetails();
-                i = 0;
-                break;
-            case 10:
-                fragchange = new ChildDraftFragment();
-                break;
-
         }
 
-        // Replace the current fragment
-        if (fragchange != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_view, fragchange).commit();
+        if (id == 2) {
+            Intent referral = new Intent(this, ReferralActivity.class);
+            startActivity(referral);
+
+        } else {
+            // Replace the current fragment
+            if (fragchange != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_view, fragchange).commit();
+            }
         }
 
     }

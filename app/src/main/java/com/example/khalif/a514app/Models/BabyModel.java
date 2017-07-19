@@ -18,7 +18,7 @@ public class BabyModel {
     private String client_age;
     private long client_days;
     private String client_rand;
-    private Boolean client_gender;
+    private int client_gender;
 
     public String getClient_id() {
         return client_id;
@@ -56,11 +56,11 @@ public class BabyModel {
         return client_days;
     }
 
-    public Boolean getClient_gender() {
+    public int getClient_gender() {
         return client_gender;
     }
 
-    public void setClient_gender(Boolean client_gender) {
+    public void setClient_gender(int client_gender) {
         this.client_gender = client_gender;
     }
 

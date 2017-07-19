@@ -4,6 +4,7 @@ package com.example.khalif.a514app.Fragments;
  * Created by Khalif on 7/12/2017.
  */
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.example.khalif.a514app.Models.MotherModel;
 import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
 import com.example.khalif.a514app.R;
+import com.example.khalif.a514app.ReferralActivity;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
@@ -35,7 +37,7 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
 
     PregnantQModel pregantQModel;
     private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences, shared;
 
     public PregnantDss(){
 
@@ -45,6 +47,12 @@ public class PregnantDss extends Fragment implements ExpandablePanel.OnExpandLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_pregnant, container, false);
+
+        shared = getActivity().getSharedPreferences(Constant.ACTIVITY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+
+        editor.putInt(Constant.KEY_ACTIVITY, 3);
+        editor.apply();
 
         pregantQModel = new PregnantQModel();
 

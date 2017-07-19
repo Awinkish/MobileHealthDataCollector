@@ -4,6 +4,7 @@ package com.example.khalif.a514app.Fragments;
  * Created by ArwinKish on 7/11/2017.
  */
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.example.khalif.a514app.Models.PostpartumQModel;
 import com.example.khalif.a514app.Models.PregnantQModel;
 import com.example.khalif.a514app.MotherDssActivity;
 import com.example.khalif.a514app.R;
+import com.example.khalif.a514app.ReferralActivity;
 import com.example.khalif.a514app.Utils.ExpandablePanel;
 import com.example.khalif.a514app.Utils.I_fragmentlistener;
 
@@ -32,7 +34,7 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
 
     PostpartumQModel clientDetails;
     private I_fragmentlistener<MotherModel, PostpartumQModel, PregnantQModel, DraftModel> complete_listener;
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences,shared;
 
     public PostpartumDss(){
     }
@@ -41,6 +43,11 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_postpartum, container, false);
+        shared = getActivity().getSharedPreferences(Constant.ACTIVITY,Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = shared.edit();
+
+        editor.putInt(Constant.KEY_ACTIVITY, 4);
+        editor.apply();
 
         clientDetails = new PostpartumQModel();
 
@@ -102,6 +109,10 @@ public class PostpartumDss extends Fragment implements ExpandablePanel.OnExpandL
             f_sX.setSelection((int) clientDetails.get_f_sX());
 
         }
+
+        Intent referral = new Intent(getActivity(),ReferralActivity.class);
+        referral.putExtra("key", 4);
+        startActivity(referral);
 
         return rootView;
     }

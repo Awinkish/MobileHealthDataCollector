@@ -16,7 +16,7 @@ import com.google.gson.Gson;
  */
 public class PostpartumDssDb extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 14;
 
     // Database Name
     private static final String DATABASE_NAME = "PostpartumDssDb";

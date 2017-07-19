@@ -54,7 +54,7 @@ public class BabyDssDetails extends Fragment {
         spnSubLoc = (Spinner) rootView.findViewById(R.id.sub_location);
         community_unit = (Spinner) rootView.findViewById(R.id.community_unit);
         days = (Spinner) rootView.findViewById(R.id.spnDays);
-        //rGender = (RadioGroup)rootView.findViewById(R.id.rGender);
+        rGender = (RadioGroup)rootView.findViewById(R.id.rGender);
 
         sharedPreferences = getActivity().getSharedPreferences("baby_details", Context.MODE_PRIVATE);
         String populate = sharedPreferences.getString(Constant.DRAFT_BABY, null);
@@ -76,7 +76,7 @@ public class BabyDssDetails extends Fragment {
         weight.setText(babyModel.getClient_weight());
         mobile.setText(babyModel.getClient_phone());
         //days.setSelection(babyModel.getClient_days(days.getSelectedItemId()));
-        //rGender.setSelected(true);
+        rGender.check(babyModel.getClient_gender());
 
     }
 
@@ -88,7 +88,7 @@ public class BabyDssDetails extends Fragment {
         babyModel.setClient_phone(mobile.getText().toString());
         babyModel.setClient_days(days.getSelectedItemId());
         babyModel.setClient_rand(rand);
-        babyModel.setClient_gender(false);
+        babyModel.setClient_gender(rGender.getCheckedRadioButtonId());
 
         Log.d("here2", babyModel.toString());
 

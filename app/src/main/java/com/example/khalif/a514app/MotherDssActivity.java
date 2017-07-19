@@ -1,5 +1,6 @@
 package com.example.khalif.a514app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -60,7 +61,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
         rand = clientModel.getClient_rand();
         MotherDetailsDb db = MotherDetailsDb.getInstance(getApplicationContext());
         db.getWritableDatabase();
-        if(!bol){
+        if (!bol) {
             db.save(clientModel, rand);
         }
     }
@@ -70,7 +71,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
         PostpartumDssDb db = PostpartumDssDb.getInstance(getApplicationContext());
         db.getWritableDatabase();
 
-        if(!bol){
+        if (!bol) {
             db.save(postpartumQModel, rand);
         }
     }
@@ -79,7 +80,7 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
     public void ansQuestionPregnant(PregnantQModel pregnantQModel) {
         PregnantDssDb db = PregnantDssDb.getInstance(getApplicationContext());
         db.getWritableDatabase();
-        if(!bol){
+        if (!bol) {
             db.save(pregnantQModel, rand);
         }
     }
@@ -160,22 +161,19 @@ public class MotherDssActivity extends AppCompatActivity implements I_fragmentli
                     fragchange = new PostpartumDss();
                 }
                 break;
-            case 2:
-                fragchange = new MotherDssDetails();
-                isDraft(false);
-                i = 0;
-                break;
-            case 10:
-                fragchange = new MotherDraftFragment();
-                break;
+        }
+        if (id == 3) {
+            Intent referral = new Intent(this, ReferralActivity.class);
+            startActivity(referral);
 
+        } else {
+            // Replace the current fragment
+            if (fragchange != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_view, fragchange).commit();
+            }
         }
 
-        // Replace the current fragment
-        if (fragchange != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_view, fragchange).commit();
-        }
 
     }
 

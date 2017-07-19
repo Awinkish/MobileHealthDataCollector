@@ -133,6 +133,7 @@ public class ChildDraftFragment extends Fragment {
 
         editor.putString(Constant.DRAFT_BABY, gson.toJson(babyModel, BabyModel.class));
         editor.putString(Constant.DRAFT_KEY, search);
+        editor.putString(Constant.KEY_ACTIVITY, "");
         editor.apply();
 
     }
